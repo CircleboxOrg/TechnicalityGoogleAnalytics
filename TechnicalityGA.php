@@ -2,13 +2,13 @@
 /**
  * Plugin Name: Technicality Google Analytics
  * Plugin URI: http://technicality.online/products/GoogleAnalyticsWordPressPlugin
- * Version: 1.0.0
+ * Version: 1.0.1
  * Description: Simple - enter your Google Tracking ID in a new field on the General Settings page and the Google Analytics script will be added to the header of each post and page.
  * Author: Jeff Trotman, Technicality LLC
  * Author URI: http://technicality.online
  */
  
-function hook_gaheader() {
+function technicalityGA_hook_gaheader() {
     $setting = get_option('technicality_gaTrackingId');
     if (isset( $setting ))
     {
@@ -26,9 +26,9 @@ function hook_gaheader() {
     <?php
     }
 }
-add_action('wp_head', 'hook_gaheader');
+add_action('wp_head', 'technicalityGA_hook_gaheader');
 
-function technicality_settings_init()
+function technicalityGA_settings_init()
 {
     // register a new setting for "reading" page
     register_setting('general', 'technicality_gaTrackingId');
@@ -54,7 +54,7 @@ function technicality_settings_init()
 /**
  * register technicality_settings_init to the admin_init action hook
  */
-add_action('admin_init', 'technicality_settings_init');
+add_action('admin_init', 'technicalityGA_settings_init');
  
 /**
  * callback functions
